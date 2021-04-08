@@ -1,9 +1,6 @@
 var express = require('express');
+const family_controlers= require('../controllers/family');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('family', { title: 'Search Results Family' });
-});
-
+/* GET familys */
+router.get('/', family_controlers.family_view_all_Page );
 module.exports = router;

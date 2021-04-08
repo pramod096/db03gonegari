@@ -2,7 +2,7 @@
 
 Web Apps Assignment 10
 
-Link to remote heroku server - <https://wab03gonegari.herokuapp.com/>
+Link to remote heroku server - <https://db03gonegari.herokuapp.com/>
 
 Class name: Family
 Attributes:
