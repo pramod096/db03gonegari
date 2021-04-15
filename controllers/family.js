@@ -46,9 +46,19 @@ res.error(500,`{"error": ${err}}`);
 
 
 // Handle family delete form on DELETE.
-exports.family_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: family delete DELETE ' + req.params.id);
+// Handle family delete on DELETE.
+exports.family_delete = async function(req, res) {
+    console.log("delete "  + req.params.id)
+    try {
+        result = await family.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
+
 // Handle family update form on PUT.
 exports.family_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
@@ -77,3 +87,54 @@ exports.family_view_all_Page = async function(req, res) {
     res.error(500,`{"error": ${err}}`);
     }
     };
+// Handle a show one view with id specified by query
+exports.family_view_one_Page = async function(req, res) {
+    console.log("single view for id "  + req.query.id)
+    try{
+        result = await family.findById( req.query.id)
+        res.render('familydetail', 
+{ title: 'family Detail', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle building the view for creating a family.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.family_create_Page =  function(req, res) {
+    console.log("create view")
+    try{
+        res.render('familycreate', { title: 'family Create'});
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle building the view for updating a family.
+// query provides the id
+exports.family_update_Page =  async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        let result = await family.findById(req.query.id)
+        res.render('familyupdate', { title: 'family Update', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle a delete one view with id from query
+exports.family_delete_Page = async function(req, res) {
+    console.log("Delete view for id "  + req.query.id)
+    try{
+        result = await family.findById(req.query.id)
+        res.render('familydelete', { title: 'family Delete', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};

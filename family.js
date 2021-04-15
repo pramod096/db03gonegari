@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const familySchema = mongoose.Schema({
-costumetype: String,
-size: String,
-cost: Number
+lastname: String,
+address: String,
+phoneNumber: Number
 })
 module.exports = mongoose.model("family", familySchema)

@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+
+  form(id='familyForm', action="/resource/family", method="POST")
+    div.form-group
+        label.familyAttr(for='lastname') family last name
+        input#lastname(type='text', name='lastname')
+    div.form-group
+        label.familyAttr(for='address') family address
+        input#address(type='text', name='address')
+    div.form-group
+        label.familyAttr(for='phoneNumber') family phoneNumber
+        input#phoneNumber(type='number', name='phoneNumber')
+    input(type="submit")
+
+  script.
+    document.forms['familyForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });

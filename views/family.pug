@@ -1,15 +1,14 @@
 extends layout
 
 block content
-    div(class="container-fluid")
-    h1= title
-    - let results=[{lastName:"Gonegari",address:"Nizamabad",phoneNumber:9666319694},{lastName:"Kolluri",address:"Vizag",phoneNumber:8309839216},{lastName:"Pasupula",address:"Hyderabad",phoneNumber:7288857768}] 
-    div(class="row")
-        each form,index in results
-            div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.lastName}
-            div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.address}
-            div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.phoneNumber}
-    script.
+  h1= title
+    - let family  = results
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each family,index in family  
+      div(class="col-sm-4")  #{family.Dimensions} - #{family.Color} -#{family.Price}
+     
+  script.
      
       function buy(itemNo)
       {

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let costumeid = toShow._id
+  - let lastName = toShow.lastName
+  - let address = toShow.address
+  - let phoneNumber = toShow.phoneNumber
+  div
+    div.row
+      div(class='costumeAttr mr-3') family ID is:
+      div #{costumeid}
+    div.row
+      div(class='costumeAttr mr-3') family lastName is:
+      div #{lastName}
+    div.row
+      div(class='costumeAttr mr-3') family address is:
+      div #{address}
+    div.row
+      div(class='costumeAttr mr-3') family phoneNumber is:
+      div #{phoneNumber}
