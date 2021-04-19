@@ -4,13 +4,19 @@ block content
   h1= title
     - let family  = results
   div(class="container-fluid mt-3")
-  div(class="row")
-    each family,index in family  
-      div(class="col-sm-4")  #{family.Dimensions} - #{family.Color} -#{family.Price}
+  div(class="row m-1")
+    each i,index in family
+     - let destination = `dispatch(\"/family/update?id=${family._id}\")`  
+      div(class="col-sm-4")  #{i.lastname} - #{i.address} -#{i.phoneNumber}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
      
   script.
      
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
+      }
+      function dispatch(path)
+      {
+        window.location.href=path
       }
