@@ -6,7 +6,8 @@ exports.family_list = async function(req, res) {
     res.send(thefamily);
     }
     catch(err){
-    res.error(500,`{"error": ${err}}`);
+     res.error(500,`{"error": ${err}}`);
+     
     }
     };
 
@@ -40,7 +41,8 @@ let result = await document.save();
 res.send(result);
 }
 catch(err){
-res.error(500,`{"error": ${err}}`);
+//res.error(500,`{"error": ${err}}`);
+res.status(500).send("family invalid");
 }
 };
 
